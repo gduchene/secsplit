@@ -8,7 +8,7 @@ import (
 	"encoding/base64"
 	"flag"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 
 	"github.com/hashicorp/vault/shamir"
@@ -23,7 +23,7 @@ var (
 func main() {
 	flag.Parse()
 
-	buf, err := ioutil.ReadAll(os.Stdin)
+	buf, err := io.ReadAll(os.Stdin)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "failed to read the secret:", err)
 		os.Exit(1)
